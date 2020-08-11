@@ -227,21 +227,7 @@ function DailyScrum() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormControl className={classes1.formControl} style={{ marginLeft: '2%'}}>
-                            <InputLabel htmlFor="date-simple">Model Environment Name</InputLabel>
-                            <Select
-                                value={values.scrumDate}
-                                onChange={handleDate}
-                                inputProps={{
-                                    name: 'scrumDate',
-                                    id: 'date-simple',
-                                }}
-                            >
-                                {dailyscrumdata[values.key].statusDate.map((dates, index) => {
-                                    return (
-                                        <MenuItem value={dates.date} key={index}>{dates.date}</MenuItem>
-                                    );
-                                })}
-                            </Select>
+                        <TextField id="standard-basic" label="Model Environment Name" />
                         </FormControl>
                     </Grid>
                 </Grid>
@@ -257,10 +243,11 @@ function DailyScrum() {
                         <tr>
                             <td colSpan={2}>
                                 <TextField
-                                    id="outlined-textarea"
+                                    id="outlined-multiline-static"
                                     label=""
-                                    placeholder="Edit Image"
                                     multiline
+                                    rows={15}
+                                    defaultValue="Edit Image"
                                     variant="outlined"
                                     style={{ margin: '10px', minWidth: '98%' }}
                                     inputProps={{
