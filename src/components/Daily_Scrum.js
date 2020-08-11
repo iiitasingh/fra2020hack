@@ -16,7 +16,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Scrumdata from './dailyScrum.json';
 import TextField from '@material-ui/core/TextField';
-import * as moment  from 'moment';
+import * as moment from 'moment';
 
 
 const useStyles1 = makeStyles(theme => ({
@@ -32,14 +32,15 @@ const useStyles1 = makeStyles(theme => ({
     },
     formControl: {
         margin: theme.spacing(1),
-        minWidth: '20%',
+        minWidth: '100%',
     },
 }));
 
 const useStyles = makeStyles(theme => ({
     grid: {
-        width: '90%',
-        marginLeft: '2%',
+        width: '98%',
+        marginLeft: '0%',
+        marginRight: '2%',
         flexDirection: 'row'
     },
     root: {
@@ -56,7 +57,11 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         marginRight: theme.spacing(1),
-    }
+    },
+    resize:{
+        minHeight: '500px',
+    },    
+
 }));
 
 const data = {
@@ -152,7 +157,7 @@ function DailyScrum() {
         });
     }
     const AddScrum = (event, key) => {
-        if (dailyStatus.member.length > 0 && dailyStatus.yesterday.length > 0 && dailyStatus.today.length >0 && dailyStatus.blocker.length >0) {
+        if (dailyStatus.member.length > 0 && dailyStatus.yesterday.length > 0 && dailyStatus.today.length > 0 && dailyStatus.blocker.length > 0) {
             const viewArray = dailyscrumdata[0].statusDate[0].status.slice();
             let length = dailyscrumdata[0].statusDate[0].status.length;
             const id = dailyscrumdata[0].statusDate[0].status[length - 1].statusId + 1;
@@ -166,8 +171,8 @@ function DailyScrum() {
 
             viewArray.push(newView);
             console.log(viewArray);
-            setdailyscrumdata({ ...dailyscrumdata, status: viewArray})
-        } else{
+            setdailyscrumdata({ ...dailyscrumdata, status: viewArray })
+        } else {
             alert('Fill all fields.');
         }
     }
@@ -181,171 +186,99 @@ function DailyScrum() {
     return (
         <Paper className={classes1.paper}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <Grid container className={classes.grid} >
-                    <FormControl className={classes1.formControl} style={{ marginTop: 16 }}>
-                        <InputLabel htmlFor="age-simple">Team name</InputLabel>
-                        <Select
-                            value={values.teamName}
-                            onChange={handleTeamChange}
-                            inputProps={{
-                                name: 'teamName',
-                                id: 'age-simple',
-                            }}
-                        >
-                            {dailyscrumdata.map((Teamname, index) => {
-                                return (
-                                    <MenuItem value={Teamname.teamName} key={index}>{Teamname.teamName}</MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
-                    <FormControl className={classes1.formControl} style={{ marginTop: 16, marginLeft: '2%' }}>
-                        <InputLabel htmlFor="date-simple">Select Date</InputLabel>
-                        <Select
-                            value={values.scrumDate}
-                            onChange={handleDate}
-                            inputProps={{
-                                name: 'scrumDate',
-                                id: 'date-simple',
-                            }}
-                        >
-                            {dailyscrumdata[values.key].statusDate.map((dates, index) => {
-                                return (
-                                    <MenuItem value={dates.date} key={index}>{dates.date}</MenuItem>
-                                );
-                            })}
-                        </Select>
-                    </FormControl>
-                    <KeyboardDatePicker
-                        margin="normal"
-                        id="mui-pickers-date"
-                        label="Pick daily scrum date"
-                        value={dailyStatus.date}
-                        onChange={handleDateChange}
-                        KeyboardButtonProps={{
-                            'aria-label': 'change date',
-                        }}
-                        style={{ width: '20%', marginLeft: '2%' }}
-                    />
+                <Grid container spacing={3} className={classes.grid}>
+                    <Grid item xs={12} sm={6}>
+                        <FormControl className={classes1.formControl} style={{ marginTop: 16 }}>
+                            <InputLabel htmlFor="age-simple">Select Model</InputLabel>
+                            <Select
+                                value={values.teamName}
+                                onChange={handleTeamChange}
+                                inputProps={{
+                                    name: 'teamName',
+                                    id: 'age-simple',
+                                }}
+                            >
+                                {dailyscrumdata.map((Teamname, index) => {
+                                    return (
+                                        <MenuItem value={Teamname.teamName} key={index}>{Teamname.teamName}</MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <FormControl className={classes1.formControl} style={{ marginTop: 16, marginLeft: '2%' }}>
+                            <InputLabel htmlFor="date-simple">Select Image Child</InputLabel>
+                            <Select
+                                value={values.scrumDate}
+                                onChange={handleDate}
+                                inputProps={{
+                                    name: 'scrumDate',
+                                    id: 'date-simple',
+                                }}
+                            >
+                                {dailyscrumdata[values.key].statusDate.map((dates, index) => {
+                                    return (
+                                        <MenuItem value={dates.date} key={index}>{dates.date}</MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                        <FormControl className={classes1.formControl} style={{ marginLeft: '2%'}}>
+                            <InputLabel htmlFor="date-simple">Model Environment Name</InputLabel>
+                            <Select
+                                value={values.scrumDate}
+                                onChange={handleDate}
+                                inputProps={{
+                                    name: 'scrumDate',
+                                    id: 'date-simple',
+                                }}
+                            >
+                                {dailyscrumdata[values.key].statusDate.map((dates, index) => {
+                                    return (
+                                        <MenuItem value={dates.date} key={index}>{dates.date}</MenuItem>
+                                    );
+                                })}
+                            </Select>
+                        </FormControl>
+                    </Grid>
                 </Grid>
             </MuiPickersUtilsProvider>
-            <Paper className={classes.root} style={{ height: 540 }}>
-                <table className="table table-bordered" style={{ marginBottom: 0 }}>
-                    <thead>
-                        <tr className="thead-light" style={{ textAlign: "center" }}>
-                            <th style={{ width: "25%" }}>Member Name</th>
-                            <th style={{ width: "25%" }}>Yesterday</th>
-                            <th style={{ width: "25%" }}>Today</th>
-                            <th style={{ width: "25%" }}>Blockers</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {dailyscrumdata[values.key].statusDate[values.dateIndex].status.map((status, index) => {
-                            return (
-                                <>
-                                    <tr key={index}>
-                                        <td>{status.memberName}</td>
-                                        <td>{status.yesterday}</td>
-                                        <td>{status.today}</td>
-                                        <td>{status.blocker}</td>
-                                    </tr>
-                                </>
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </Paper>
-            <Paper className={classes.root}>
-                <table className="table" style={{ marginBottom: 0 }}>
-                    <thead>
+            <Paper className={classes.root} >
+                <table className="table " style={{ marginBottom: 0 }}>
+                    <thead >
                         <tr className="thead-dark">
-                            <th colSpan={3} style={{ width: "25%", textAlign: "left" }}>Add today's status</th>
-                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#contained-buttons" onClick={AddScrum} className={classes.button}>Add</Button></th>
-                        </tr>
-                        <tr className="thead-light" style={{ textAlign: "center" }}>
-                            <th style={{ width: "25%" }}>Member Name</th>
-                            <th style={{ width: "25%" }}>Yesterday</th>
-                            <th style={{ width: "25%" }}>Today</th> 
-                            <th style={{ width: "25%" }}>Blockers</th>
+                            <th colSpan={2}>Edit Image</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <FormControl className={classes1.formControl} style={{ width: "100%", paddingRight: "3%" }}>
-                                    <InputLabel htmlFor="memberList1">Team name</InputLabel>
-                                    <Select
-                                        value={dailyStatus.member}
-                                        onChange={dailyStatusMemberChange}
-                                        inputProps={{
-                                            name: 'member',
-                                            id: 'memberList1',
-                                            key: 0
-                                        }}
-                                    >
-                                        {dailyscrumdata[values.key].statusDate[values.dateIndex].status.map((status, index) => {
-                                            return (
-                                                <MenuItem value={status.memberName} key={index}>{status.memberName}</MenuItem>
-                                            );
-                                        })}
-                                    </Select>
-                                </FormControl>
+                            <td colSpan={2}>
+                                <TextField
+                                    id="outlined-textarea"
+                                    label=""
+                                    placeholder="Edit Image"
+                                    multiline
+                                    variant="outlined"
+                                    style={{ margin: '10px', minWidth: '98%' }}
+                                    inputProps={{
+                                        classes: {
+                                            input: classes.resize,
+                                        }
+                                    }}
+                                />
                             </td>
-                            <td><TextField
-                                id="outlined-multiline-flexible"
-                                label="Yesterday"
-                                multiline
-                                rowsMax="3"
-                                name="yesterday"
-                                value={dailyStatus.yesterday}
-                                onChange={dailyStatusChange}
-                                style={{ width: '100%', marginRight: -8, marginTop: 8 }}
-                                className={""}
-                                margin="normal"
-                                inputProps={{
-                                    fontSize: 8,
-                                    maxLength: 140
-                                }}
-                                variant="outlined"
-                            /></td>
-                            <td><TextField
-                                id="outlined-multiline-flexible"
-                                label="Today"
-                                multiline
-                                rowsMax="3"
-                                name="today"
-                                value={dailyStatus.today}
-                                onChange={dailyStatusChange}
-                                style={{ width: '100%', marginRight: -8, marginTop: 8 }}
-                                className={""}
-                                margin="normal"
-                                inputProps={{
-                                    fontSize: 8,
-                                    maxLength: 140
-                                }}
-                                variant="outlined"
-                            /></td>
-                            <td><TextField
-                                id="outlined-multiline-flexible"
-                                label="Blockers"
-                                multiline
-                                rowsMax="3"
-                                name="blocker"
-                                value={dailyStatus.blocker}
-                                onChange={dailyStatusChange}
-                                style={{ width: '100%', marginRight: -8, marginTop: 8 }}
-                                className={""}
-                                margin="normal"
-                                inputProps={{
-                                    fontSize: 8,
-                                    maxLength: 140
-                                }}
-                                variant="outlined"
-                            /></td>
+                        </tr>
+                        <tr className="thead-light">
+                            <th style={{ width: "25%", textAlign: "left" }}></th>
+                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#contained-buttons" onClick={AddScrum} className={classes.button}>Publish to Git</Button></th>
                         </tr>
                     </tbody>
                 </table>
             </Paper>
+
         </Paper>
     );
 }
