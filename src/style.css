@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Ashish';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../../public/fonts/._MLight.ttf') format('truetype'),
+    url('../../../public/fonts/._MMedium.ttf') format('truetype'),
+    url('../../../public/fonts/._MRegular.ttf') format('truetype')
+ }
