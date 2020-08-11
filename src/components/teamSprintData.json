@@ -1,0 +1,28 @@
+[
+    {
+        "resourse": "Olympus",
+        "total": 1200,
+        "completed": 900,
+        "color":"#28a745"
+    },
+    {
+        "resourse": "Discovery",
+        "total": 1134,
+        "completed": 800
+    },
+    {
+        "resourse": "Geography",
+        "total": 1334,
+        "completed": 987
+    },
+    {
+        "resourse": "History",
+        "total": 1260,
+        "completed": 780
+    },
+    {
+        "resourse": "Adventure",
+        "total": 1100,
+        "completed": 1000
+    }
+]

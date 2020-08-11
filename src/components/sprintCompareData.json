@@ -1,0 +1,106 @@
+[
+    {
+        "id": "Olympus",
+        "color": "hsl(157, 70%, 50%)",
+        "data": [
+            {
+                "x": "Sprint1",
+                "y": 80
+            },
+            {
+                "x": "Sprint2",
+                "y": 46
+            },
+            {
+                "x": "Sprint3",
+                "y": 39
+            },
+            {
+                "x": "Sprint4",
+                "y": 182
+            },
+            {
+                "x": "Sprint5",
+                "y": 209
+            }
+        ]
+    },
+    {
+        "id": "Adventure",
+        "color": "hsl(227, 70%, 50%)",
+        "data": [
+            {
+                "x": "Sprint1",
+                "y": 145
+            },
+            {
+                "x": "Sprint2",
+                "y": 222
+            },
+            {
+                "x": "Sprint3",
+                "y": 199
+            },
+            {
+                "x": "Sprint4",
+                "y": 86
+            },
+            {
+                "x": "Sprint5",
+                "y": 9
+            }
+        ]
+    },
+    {
+        "id": "discovery",
+        "color": "hsl(124, 70%, 50%)",
+        "data": [
+            {
+                "x": "Sprint1",
+                "y": 26
+            },
+            {
+                "x": "Sprint2",
+                "y": 181
+            },
+            {
+                "x": "Sprint3",
+                "y": 191
+            },
+            {
+                "x": "Sprint4",
+                "y": 163
+            },
+            {
+                "x": "Sprint5",
+                "y": 6
+            }
+        ]
+    },
+    {
+        "id": "History",
+        "color": "hsl(63, 70%, 50%)",
+        "data": [
+            {
+                "x": "Sprint1",
+                "y": 142
+            },
+            {
+                "x": "Sprint2",
+                "y": 272
+            },
+            {
+                "x": "Sprint3",
+                "y": 222
+            },
+            {
+                "x": "Sprint4",
+                "y": 244
+            },
+            {
+                "x": "Sprint5",
+                "y": 82
+            }
+        ]
+    }
+]
