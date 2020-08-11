@@ -156,6 +156,32 @@ function DailyScrum() {
             [event.target.name]: event.target.value, key: key.key
         });
     }
+    const [dockerFile, setDockerFile] = useState("");
+    const saveDockerFile = () => {
+              console.log("File to save " + {dockerFile})
+              const url = 'https://jsonplaceholder.typicode.com/posts';
+              // POST request using fetch inside useEffect React hook
+              const requestOptions = {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                  },
+                  body: JSON.stringify(
+                    {
+                        title: 'DockerFile'
+                    }
+                  )
+              };
+
+              fetch(url, requestOptions)
+                  .then(response => response.json())
+                  .then(data => {
+                      alert("Docker file saved - "+data.id);
+                      console.log("Data-"+data.title);
+                  });
+      };
+
     const AddScrum = (event, key) => {
         if (dailyStatus.member.length > 0 && dailyStatus.yesterday.length > 0 && dailyStatus.today.length > 0 && dailyStatus.blocker.length > 0) {
             const viewArray = dailyscrumdata[0].statusDate[0].status.slice();
@@ -260,7 +286,7 @@ function DailyScrum() {
                         </tr>
                         <tr className="thead-light">
                             <th style={{ width: "25%", textAlign: "left" }}></th>
-                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#contained-buttons" onClick={AddScrum} className={classes.button}>Publish to Git</Button></th>
+                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#contained-buttons" onClick={saveDockerFile} className={classes.button}>Publish to Git</Button></th>
                         </tr>
                     </tbody>
                 </table>
