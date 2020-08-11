@@ -28,6 +28,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import DailyScrum from './Daily_Scrum';
+import PageOne from './PageOne';
 import TaskAllocation from './Task_allocation';
 import NotFound from '../NotFound';
 import TaskIcon from '@material-ui/icons/EventNote';
@@ -406,7 +407,7 @@ function PrimarySearchAppBar(props) {
           <div>
             <Switch>
               <Route exact path="/" component={TaskAllocation} />
-              <Route path="/DailyScrum" component={DailyScrum} />
+              <Route path="/DailyScrum" component={PageOne} />
               <Route component={NotFound} />
             </Switch>
           </div>
