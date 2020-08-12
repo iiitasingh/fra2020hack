@@ -100,6 +100,31 @@ function Page2() {
 
     }
 
+
+    const saveDockerFile = () => {
+                  console.log(values.name+"name")
+                                    console.log(values.child+"child")
+
+                  const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name='+values.name+'&blob_name='+values.child+'.txt';
+                  const requestOptions = {
+                      method: 'POST',
+                      body: JSON.stringify(values.desc)
+                  };
+
+                  fetch(url, requestOptions)
+                      .then(response =>{
+                      if(response.status==200){
+                        alert("Docker file saved successfully");
+                      }
+                      else
+                      {
+                        alert("Docker file not saved.Please check");
+                      }
+                      })
+                      .then(data => {
+                      });
+          };
+
     return (
         <Paper className={classes1.paper}>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -179,7 +204,7 @@ function Page2() {
                         </tr>
                         <tr className="thead-light">
                             <th style={{ width: "25%", textAlign: "left" }}></th>
-                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#" onClick={publishGit} className={classes.button}>Publish to Git</Button></th>
+                            <th style={{ width: "25%", textAlign: "right" }}><Button variant="contained" href="#" onClick={saveDockerFile} className={classes.button}>Publish to Git</Button></th>
                         </tr>
                     </tbody>
                 </table>
