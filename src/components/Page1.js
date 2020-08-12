@@ -161,6 +161,31 @@ export default function CustomizedTables() {
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
+const saveDockerFile = () => {
+                  console.log(model.name+"name")
+                                    console.log(updatedChild.name+"child")
+                                    console.log(updatedChild.description+"desc")
+
+                  const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name='+model.name+'&blob_name='+updatedChild.name+'.txt';
+                  const requestOptions = {
+                      method: 'POST',
+                      body: JSON.stringify(updatedChild.description)
+                  };
+
+                  fetch(url, requestOptions)
+                      .then(response =>{
+                      if(response.status==200){
+                        alert("Docker file saved successfully");
+                      }
+                      else
+                      {
+                        alert("Docker file not saved.Please check");
+                      }
+                      })
+                      .then(data => {
+                      });
+          };
+
   return (
     <Paper className={classes.paper}>
       <Paper className={classes.root} >
@@ -313,7 +338,7 @@ export default function CustomizedTables() {
         <table className="table " style={{ marginBottom: 0 }}>
           <tbody>
             <tr className="thead-light">
-              <th style={{ textAlign: "center" }}><Button variant="contained" onClick={handleSave}>Publish To Git</Button></th>
+              <th style={{ textAlign: "center" }}><Button variant="contained" onClick={saveDockerFile}>Publish To Git</Button></th>
             </tr>
           </tbody>
         </table>
