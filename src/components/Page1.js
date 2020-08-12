@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
-
+import EditIcon from '@material-ui/icons/Edit';
 
 
 const useStyles1 = makeStyles(theme => ({
@@ -121,6 +121,7 @@ export default function CustomizedTables() {
                   return (
                     <tr key={index} >
                       <td child_id={childImg.id} onClick={handelChild}>{childImg.name}</td>
+                      <td style={{ textAlign: 'right', paddingBottom: 6, paddingTop: 6 }}><EditIcon/></td>
                     </tr>);
                 })}
               </tbody>
@@ -152,6 +153,17 @@ export default function CustomizedTables() {
                 required
                 id="outlined-required"
                 label="Editable"
+                name='name'
+                value={selectedChild.name}
+                variant="outlined"
+                onChange={handleChildChange}
+              />
+            </FormControl>
+            <FormControl className={classes1.formControl} >
+              <TextField
+                required
+                id="outlined-required"
+                label="Editable URL"
                 name='name'
                 value={selectedChild.name}
                 variant="outlined"
