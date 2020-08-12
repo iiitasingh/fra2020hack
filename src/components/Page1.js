@@ -164,9 +164,8 @@ export default function CustomizedTables() {
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify(updatedChild.description),
-      mode: 'no-cors',
       headers: {
-        "Access-Control-Allow-Origin": '*',
+        "Access-Control-Allow-Origin": 'https://fras2020hack.herokuapp.com/',
         "Content-Type": "text/xml",
         }
     };

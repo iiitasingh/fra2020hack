@@ -106,9 +106,8 @@ function Page2() {
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(values.desc),
-            mode: 'no-cors',
             headers: {
-                "Access-Control-Allow-Origin": '*',
+                "Access-Control-Allow-Origin": 'https://fras2020hack.herokuapp.com/',
                 "Content-Type": "text/xml",
             }
         };
