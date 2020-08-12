@@ -10,7 +10,6 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -27,13 +26,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DailyScrum from './Daily_Scrum';
-import TaskAllocation from './Task_allocation';
+import Page2 from './Page2';
+import Page1 from './Page1';
 import NotFound from '../NotFound';
 import TaskIcon from '@material-ui/icons/EventNote';
 import ScrumIcon from '@material-ui/icons/People';
-import ReviewIcon from '@material-ui/icons/FindInPage';
-import RetroIcon from '@material-ui/icons/Forum';
 
 const drawerWidth = 220;
 
@@ -303,7 +300,6 @@ function PrimarySearchAppBar(props) {
               edge="start"
               onClick={handleDrawerOpen}
               className={clsx(classes.menuButton, open && classes.hide)}
-              color="#343A40"
               aria-label="Open drawer"
             >
               <MenuIcon />
@@ -381,7 +377,7 @@ function PrimarySearchAppBar(props) {
                 <ListItemText >Page 1</ListItemText>
               </ListItem>
             </Link>
-            <Link to="/DailyScrum">
+            <Link to="/Page2">
               <ListItem button onClick={changePage} data-id="2">
                 <ListItemIcon ><ScrumIcon /></ListItemIcon>
                 <ListItemText >Page 2</ListItemText>
@@ -405,8 +401,9 @@ function PrimarySearchAppBar(props) {
           <div className={classes.drawerHeader} />
           <div>
             <Switch>
-              <Route exact path="/" component={TaskAllocation} />
-              <Route path="/DailyScrum" component={DailyScrum} />
+              <Route exact path="/" component={Page1} />
+              <Route path="/Page2" component={Page2} />
+              {/* <Route path="/Page3" component={Page3} /> */}
               <Route component={NotFound} />
             </Switch>
           </div>
