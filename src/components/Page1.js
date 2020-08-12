@@ -104,9 +104,9 @@ export default function CustomizedTables() {
     setModel(modelData[m]);
     setValues({ ...values, name: modelData[m].name, key: modelData[m].id, check: true })
   }
-  const handelChild = (event) => {
+  const handelChild = (childId)=> (event) => {
     const id = event.target.getAttribute('id');
-    console.log(id);
+    console.log(childId);
     setChild(model.child[id]);
     // setSelectedChild(selectedModel.child[id]);
   }
@@ -159,7 +159,7 @@ export default function CustomizedTables() {
                 {model.child.map((childImg, index) => {
                   return (
                     <tr key={index}>
-                      <td id={childImg.id} onClick={handelChild}>{childImg.name} <EditIcon className={classes.editButton} /> </td>
+                      <td id={childImg.id} onClick={handelChild(childImg.id)}>{childImg.name} <EditIcon className={classes.editButton} /> </td>
                       {/* <td style={{ textAlign: 'right', paddingBottom: 6, paddingTop: 6 }}><EditIcon /></td> */}
                     </tr>);
                 })}
