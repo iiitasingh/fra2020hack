@@ -151,7 +151,7 @@ export default function CustomizedTables() {
   }
 
   const handleChildChange = (e) => {
-    // console.log(e.target.value);
+    //console.log(e.target.value);
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
@@ -166,9 +166,9 @@ export default function CustomizedTables() {
       body: JSON.stringify(updatedChild.description),
       mode: 'no-cors',
       headers: {
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": '*',
         "Content-Type": "text/xml",
-      }
+        }
     };
 
     fetch(url, requestOptions)
