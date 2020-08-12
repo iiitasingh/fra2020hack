@@ -7,9 +7,9 @@
         "size" : 27,
         "date": "2012-10-16T17:57:28.556094Z",
         "child":[
-            {"id":0,"name":"child base 1 image","description":"Base 1 image / child base 1 image","Environment":"Dev"},
-            {"id":1,"name":"child base 2 image","description":"Base 1 image / child base 2 image","Environment":"PPD"},
-            {"id":2,"name":"child base 3 image","description":"Base 1 image / child base 3 image","Environment":"PPL"}
+            {"id":0,"name":"child-1 base-1 image","description":"Base 1 image / child-1 of base 1 image","Environment":"Dev"},
+            {"id":1,"name":"child-2 base-1 image","description":"Base 1 image / child-2 of base 1 image","Environment":"PPD"},
+            {"id":2,"name":"child-3 base-1 image","description":"Base 1 image / child-3 of base 1 image","Environment":"PPL"}
         ]
     },
     {
@@ -20,8 +20,8 @@
         "size" : 19,
         "date": "2014-09-05T17:57:28.556094Z",
         "child":[
-            {"id":0,"name":"child base 1 image","description":"Base 2 image / child base 1 image","Environment":"PRD"},
-            {"id":1,"name":"child base 2 image","description":"Base 2 image / child base 2 image","Environment":"Dev"}
+            {"id":0,"name":"child-1 base-2 image","description":"Base 2 image / child-1 of base 2 image","Environment":"PRD"},
+            {"id":1,"name":"child-2 base-2 image","description":"Base 2 image / child-2 of base 2 image","Environment":"Dev"}
         ]
     },
     {
@@ -32,7 +32,7 @@
         "size" : 23,
         "date": "2015-02-13T17:57:28.556094Z",
         "child":[
-            {"id":0,"name":"child base 1 image","description":"Base 3 image / child base 1 image","Environment":"QA"}
+            {"id":0,"name":"child-1 base-3 image","description":"Base 3 image / child-1 of base 3 image","Environment":"QA"}
         ]
     }
 ]
