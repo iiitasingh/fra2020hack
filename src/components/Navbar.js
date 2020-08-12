@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -33,12 +33,6 @@ import TaskIcon from '@material-ui/icons/EventNote';
 import ScrumIcon from '@material-ui/icons/People';
 
 const drawerWidth = 220;
-
-const useStyles1 = makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
-}));
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   },
   imageLogo: {
     marginRight: theme.spacing(2),
-    width : 140,
+    width: 140,
   },
   title: {
     display: 'none',
@@ -180,7 +174,6 @@ const useStyles = makeStyles(theme => ({
 
 function PrimarySearchAppBar(props) {
   const classes = useStyles();
-  const classes1 = useStyles1();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -239,7 +232,7 @@ function PrimarySearchAppBar(props) {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-      
+
     >
       <MenuItem>
         <IconButton aria-label="Show 4 new mails" color="inherit">
@@ -304,7 +297,7 @@ function PrimarySearchAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
-            <img className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} />
+            <img alt="Logo" className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} />
             <Typography className={classes.title} variant="h6" noWrap>
               {pageName}
             </Typography>
@@ -336,7 +329,7 @@ function PrimarySearchAppBar(props) {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                
+
               >
                 <AccountCircle />
               </IconButton>
@@ -356,14 +349,14 @@ function PrimarySearchAppBar(props) {
         {renderMobileMenu}
         {renderMenu}
         <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
           <div className={classes.toolbar}>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}

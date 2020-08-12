@@ -13,7 +13,6 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import * as moment from 'moment';
 import modelDATA from './modelData.json';
 
 
@@ -74,9 +73,7 @@ function Page2() {
         desc:''
     });
     
-    const Pad = {
-        paddingRight: 16,
-    }
+
     const handleModelChange = (event, key) => {
         setValues({
             ...values,

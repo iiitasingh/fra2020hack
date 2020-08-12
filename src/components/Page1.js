@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import { ResponsiveBar } from '@nivo/bar';
 import modelDATA from './modelData.json';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -57,8 +56,21 @@ const useStyles = makeStyles(theme => ({
   paper: {
     width: '100%',
   },
-  editButton: {
-    marginLeft: 100,
+  box1: {
+    paddingTop: 0,
+    paddingRight: 4,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    height: 400,
+    overflow: 'auto'
+  },
+  box2: {
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 4,
+    height: 400,
+    overflow: 'auto'
   }
 }));
 
@@ -67,7 +79,6 @@ export default function CustomizedTables() {
   const classes1 = useStyles1();
 
   const [modelData, setModelData] = useState(modelDATA);
-  // const [selectedChild, setSelectedChild] = useState(selectedModel.child[0]);
   const [model, setModel] = useState(
     {
       id: 0,
@@ -79,6 +90,15 @@ export default function CustomizedTables() {
       child: []
     });
   const [child, setChild] = useState(
+    {
+      id: 0,
+      name: '',
+      description: '',
+      environment: '',
+      url: ''
+    });
+
+  const [updatedChild, setUpdatedChild] = useState(
     {
       id: 0,
       name: '',
@@ -99,17 +119,37 @@ export default function CustomizedTables() {
 
   const handelModel = (event) => {
     const m = event.target.getAttribute('data-item');
-    console.log(m);
+    // console.log(m);
     // setSelectedModel(modelData[m]);
     setModel(modelData[m]);
     setValues({ ...values, name: modelData[m].name, key: modelData[m].id, check: true })
   }
-  const handelChild = (childId)=> (event) => {
-    const id = event.target.getAttribute('id');
-    console.log(childId);
-    setChild(model.child[id]);
-    // setSelectedChild(selectedModel.child[id]);
+  const handelChild = (childId) => (event) => {
+    // console.log(childId);
+    setChild(model.child[childId]);
+    setUpdatedChild(model.child[childId]);
   }
+
+  const handelNewChild = (modelId) => (event) => {
+    // console.log(modelId);
+    // console.log(model.child.length);
+    setChild({
+      ...child, id: model.child.length,
+      name: model.name,
+      description: model.description,
+      environment: 'PRD',
+      url: 'http://github.com'
+    });
+    setUpdatedChild({
+      ...updatedChild, id: model.child.length,
+      name: model.name,
+      description: model.description,
+      environment: 'PRD',
+      url: 'http://github.com'
+    });
+
+  }
+
   const handleSave = () => {
     // const m = selectedModel.id;
     // const i = selectedChild.id;
@@ -118,53 +158,72 @@ export default function CustomizedTables() {
   }
   const handleChildChange = (e) => {
     console.log(e.target.value);
-    // setSelectedChild({ ...selectedChild, [e.target.name]: e.target.value });
+    setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
   return (
     <Paper className={classes.paper}>
       <Paper className={classes.root} >
         <Grid container spacing={2} className={classes.grid}>
-          <Grid item xs={12} sm={6} style={{ padding: 0, height: 400, overflow: 'auto' }}>
-            <table className="table table-bordered table-hover" style={{ marginBottom: 0 }}>
-              <thead className="thead-dark">
-                <tr>
-                  <th colSpan={2} >Risk Lab Base Images</th>
-                </tr>
-              </thead>
-              <tbody>
-                {modelData.map((model, index) => {
-                  return (
-                    <tr key={index} >
-                      <td data-item={model.id} onClick={handelModel}>{model.name}</td>
-                      {/* <td style={{ textAlign: 'right', paddingBottom: 6, paddingTop: 6 }}><Button variant="contained" href="#" className={classes.button}>New</Button></td> */}
-                    </tr>);
-                })}
-              </tbody>
-            </table>
+          <Grid item xs={12} sm={6}
+            style={{
+              paddingTop: 0,
+              paddingLeft: 0,
+              paddingBottom: 0,
+              paddingRight: 4,
+              height: 400,
+              overflow: 'auto'
+            }}>
+            <Paper variant="outlined" style={{ overflow: 'auto' }}>
+              <table className="table table-hover" style={{ marginBottom: 0 }}>
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Risk Lab Base Images</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {modelData.map((model, index) => {
+                    return (
+                      <tr key={index} >
+                        <td data-item={model.id} onClick={handelModel}>{model.name}</td>
+                      </tr>);
+                  })}
+                </tbody>
+              </table>
+            </Paper>
           </Grid>
-          <Grid item xs={12} sm={6} style={{ padding: 0, height: 400, overflow: 'auto' }}>
-            <table className="table table-bordered table-hover" style={{ marginBottom: 0 }}>
-              <thead className="thead-dark">
-                <tr>
-                  <th>Production Base Images</th>
-                  <th style={{ textAlign: 'right', padding: 4 }}>
-                    {
-                      values.check ? (<Button variant="contained" className={classes.button} size="small">New</Button>) : (<></>)
-                    }
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {model.child.map((childImg, index) => {
-                  return (
-                    <tr key={index}>
-                      <td id={childImg.id} onClick={handelChild(childImg.id)}>{childImg.name} <EditIcon className={classes.editButton} /> </td>
-                      {/* <td style={{ textAlign: 'right', paddingBottom: 6, paddingTop: 6 }}><EditIcon /></td> */}
-                    </tr>);
-                })}
-              </tbody>
-            </table>
+          <Grid item xs={12} sm={6}
+            style={{
+              paddingTop: 0,
+              paddingLeft: 4,
+              paddingBottom: 0,
+              paddingRight: 0,
+              height: 400,
+              overflow: 'auto'
+            }}>
+            <Paper variant="outlined" style={{ overflow: 'auto' }}>
+              <table className="table table-hover" style={{ marginBottom: 0 }}>
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Production Base Images</th>
+                    <th style={{ textAlign: 'right', padding: 4 }}>
+                      {
+                        values.check ? (<Button variant="contained" href="#" onClick={handelNewChild(model.id)} className={classes.button} size="small">New</Button>) : (<></>)
+                      }
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {model.child.map((childImg, index) => {
+                    return (
+                      <tr key={index}>
+                        <td>{childImg.name} </td>
+                        <td style={{ textAlign: 'right', paddingBottom: 6, paddingTop: 6 }} onClick={handelChild(childImg.id)}><EditIcon /></td>
+                      </tr>);
+                  })}
+                </tbody>
+              </table>
+            </Paper>
           </Grid>
         </Grid>
       </Paper>
@@ -194,7 +253,7 @@ export default function CustomizedTables() {
                 id="outlined-required"
                 label="Editable"
                 name='name'
-                value={child.name}
+                value={updatedChild.name}
                 variant="outlined"
                 onChange={handleChildChange}
               />
@@ -204,10 +263,10 @@ export default function CustomizedTables() {
             <FormControl className={classes1.formControl1} >
               <TextField
                 required
-                id="outlined-required"
+                id="outlined-required_1"
                 label="Child Github URL"
                 name='url'
-                value={child.url}
+                value={updatedChild.url}
                 variant="outlined"
                 onChange={handleChildChange}
               />
@@ -234,12 +293,12 @@ export default function CustomizedTables() {
           <Grid item xs={12} sm={6} style={{ paddingTop: 0 }}>
             <FormControl className={classes1.formControl1} >
               <TextField
-                id="outlined-multiline-static"
+                id="outlined-multiline-static_1"
                 label=""
                 multiline
                 rows={30}
                 name='description'
-                value={child.description}
+                value={updatedChild.description}
                 variant="outlined"
                 inputProps={{
                   classes: {
