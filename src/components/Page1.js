@@ -230,7 +230,7 @@ export default function CustomizedTables() {
       <Paper className={classes.root} style={{ marginTop: 30 }} >
         <Grid container spacing={2} className={classes.grid1}>
           <Grid item xs={6} sm={3}>
-            <FormControl className={classes1.formControl} >
+            <FormControl className={classes1.formControl1} >
               <TextField
                 id="outlined-read-only-input"
                 label=""
