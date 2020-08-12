@@ -271,14 +271,14 @@ function PrimarySearchAppBar(props) {
     </Menu>
   );
 
-  const [pageName, setPage] = React.useState('Page 1');
+  const [pageName, setPage] = React.useState('Base Image Management and Certification Tool');
 
   const changePage = (e) => {
 
     if (e.currentTarget.dataset.id === '1') {
-      setPage('Page 1');
+      setPage('Base Image Management and Certification Tool');
     } else if (e.currentTarget.dataset.id === '2') {
-      setPage('Page 2');
+      setPage('Docker File Generation Tool');
     } else if (e.currentTarget.dataset.id === '3') {
       setPage('Support');
     } else {
@@ -374,13 +374,13 @@ function PrimarySearchAppBar(props) {
             <Link to="/">
               <ListItem button onClick={changePage} data-id="1">
                 <ListItemIcon ><TaskIcon /></ListItemIcon>
-                <ListItemText >Page 1</ListItemText>
+                <ListItemText >Base Image Management and Certification Tool</ListItemText>
               </ListItem>
             </Link>
             <Link to="/Page2">
               <ListItem button onClick={changePage} data-id="2">
                 <ListItemIcon ><ScrumIcon /></ListItemIcon>
-                <ListItemText >Page 2</ListItemText>
+                <ListItemText >Docker File Generation Tool</ListItemText>
               </ListItem>
             </Link>
           </List>

@@ -109,7 +109,7 @@ function Page2() {
                 <Grid container spacing={3} className={classes.grid}>
                     <Grid item xs={12} sm={6}>
                         <FormControl className={classes1.formControl} style={{ marginTop: 16 }}>
-                            <InputLabel htmlFor="age-simple">Select Model</InputLabel>
+                            <InputLabel htmlFor="age-simple">Select Risk Lab Base Image</InputLabel>
                             <Select
                                 value={values.name}
                                 onChange={handleModelChange}
@@ -128,7 +128,7 @@ function Page2() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormControl className={classes1.formControl} style={{ marginTop: 16, marginLeft: '2%' }}>
-                            <InputLabel htmlFor="date-simple">Select Image Child</InputLabel>
+                            <InputLabel htmlFor="date-simple">Select  Production Base Image</InputLabel>
                             <Select
                                 value={values.child}
                                 onChange={handleChild}
@@ -147,7 +147,7 @@ function Page2() {
                     </Grid>
                     <Grid item xs={12} sm={6}>
                         <FormControl className={classes1.formControl} style={{ marginLeft: '2%'}}>
-                        <TextField id="standard-basic" label="Model Environment Name" value={values.env} name="env" onChange={handleChildDesc}/>
+                        <TextField id="standard-basic" label="Model Docker Image Name" value={values.env} name="env" onChange={handleChildDesc}/>
                         </FormControl>
                     </Grid>
                 </Grid>
@@ -156,7 +156,7 @@ function Page2() {
                 <table className="table " style={{ marginBottom: 0 }}>
                     <thead >
                         <tr className="thead-dark">
-                            <th colSpan={2}>Edit Image</th>
+                            <th colSpan={2}>Edit Model Docker File</th>
                         </tr>
                     </thead>
                     <tbody>
