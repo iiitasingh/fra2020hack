@@ -106,12 +106,10 @@ function Page2() {
             method: 'POST',
             body: JSON.stringify(values.desc),
             body: JSON.stringify(updatedChild.description),
-            mode:'cors',
+            mode: 'cors',
             headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Credentials': true,
-                'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-                'Access-Control-Allow-Headers': 'Origin, Content-Type, Accept'
+                "Access-Control-Allow-Origin": '*',
+                "Content-Type": "text/xml",
             }
         };
 
