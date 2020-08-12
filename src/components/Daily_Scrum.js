@@ -156,7 +156,7 @@ function DailyScrum() {
             [event.target.name]: event.target.value, key: key.key
         });
     }
-    const [dockerFile, setDockerFile] = useState("");
+    const [dockerFile, setDockerFile] = useState('');
     const saveDockerFile = () => {
               console.log("File to save " + {dockerFile})
               const url = 'https://jsonplaceholder.typicode.com/posts';
@@ -169,7 +169,7 @@ function DailyScrum() {
                   },
                   body: JSON.stringify(
                     {
-                        title: 'DockerFile'
+                        title: dockerFile //'DockerFile'
                     }
                   )
               };
@@ -274,6 +274,7 @@ function DailyScrum() {
                                     multiline
                                     rows={15}
                                     defaultValue="Edit Image"
+                                    onChange={event => setDockerFile(event.target.value)}
                                     variant="outlined"
                                     style={{ margin: '10px', minWidth: '98%' }}
                                     inputProps={{
