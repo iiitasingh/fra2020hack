@@ -16,6 +16,7 @@ import TextField from '@material-ui/core/TextField';
 import modelDATA from './modelData.json';
 
 
+
 const useStyles1 = makeStyles(theme => ({
     root: {
         width: '100%',
@@ -104,12 +105,17 @@ function Page2() {
         const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + values.name + '&blob_name=' + values.child + '.txt';
         const requestOptions = {
             method: 'POST',
-            body: JSON.stringify(values.desc)
+            body: JSON.stringify(values.desc),
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                "Content-Type": "text/xml",
+            }
         };
 
         fetch(url, requestOptions)
             .then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     alert("Docker file saved successfully");
                 }
                 else {

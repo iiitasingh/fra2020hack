@@ -151,7 +151,7 @@ export default function CustomizedTables() {
   }
 
   const handleChildChange = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
@@ -163,12 +163,17 @@ export default function CustomizedTables() {
     const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + model.name + '&blob_name=' + updatedChild.name + '.txt';
     const requestOptions = {
       method: 'POST',
-      body: JSON.stringify(updatedChild.description)
+      body: JSON.stringify(updatedChild.description),
+      mode: 'no-cors',
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        "Content-Type": "text/xml",
+      }
     };
 
     fetch(url, requestOptions)
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           alert("Docker file saved successfully");
         }
         else {
