@@ -156,31 +156,40 @@ function DailyScrum() {
             [event.target.name]: event.target.value, key: key.key
         });
     }
-    const [dockerFile, setDockerFile] = useState('');
+        const [dockerFile, setDockerFile] = useState('');
+
+    const param = {
+            container_name : 'parentimage2',
+            blob_name : 'Rameshwari.Dockerfile1.txt',
+          }
+
+        const [dockerResponse, setDockerResponse] = useState('');
+
     const saveDockerFile = () => {
-              console.log("File to save " + {dockerFile})
-              const url = 'https://jsonplaceholder.typicode.com/posts';
-              // POST request using fetch inside useEffect React hook
+              console.log(JSON.stringify(dockerFile));
+              const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name='+param.container_name+'&blob_name='+param.blob_name;
+              //'https://jsonplaceholder.typicode.com/posts';
               const requestOptions = {
                   method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                  },
-                  body: JSON.stringify(
-                    {
-                        title: dockerFile //'DockerFile'
-                    }
-                  )
+                  body: JSON.stringify(dockerFile)
               };
 
               fetch(url, requestOptions)
-                  .then(response => response.json())
+                  .then(response =>{
+                  if(response.status==200){
+                  alert("Docker file saved successfully");
+                  }
+                  else
+                  {
+                  alert("Docker file not saved.Please check");
+                  }
+                  })
                   .then(data => {
-                      alert("Docker file saved - "+data.id);
-                      console.log("Data-"+data.title);
+                  setDockerResponse(data);
+                      console.log("Data-"+dockerResponse);
                   });
       };
+
 
     const AddScrum = (event, key) => {
         if (dailyStatus.member.length > 0 && dailyStatus.yesterday.length > 0 && dailyStatus.today.length > 0 && dailyStatus.blocker.length > 0) {
