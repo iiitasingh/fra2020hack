@@ -151,7 +151,7 @@ export default function CustomizedTables() {
   }
 
   const handleChildChange = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
@@ -163,7 +163,12 @@ export default function CustomizedTables() {
     const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + model.name + '&blob_name=' + updatedChild.name + '.txt';
     const requestOptions = {
       method: 'POST',
-      body: JSON.stringify(updatedChild.description)
+      body: JSON.stringify(updatedChild.description),
+      mode: 'cors',
+      headers: {
+        "Access-Control-Allow-Origin": '*',
+        "Content-Type": "text/xml",
+        }
     };
 
     fetch(url, requestOptions)
