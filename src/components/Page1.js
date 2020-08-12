@@ -150,41 +150,35 @@ export default function CustomizedTables() {
 
   }
 
-  const handleSave = () => {
-    // const m = selectedModel.id;
-    // const i = selectedChild.id;
-    // setSelectedModel({...selectedModel.child[i], name: selectedChild.name, description: selectedChild.description});
-    // setModelData({...modelData[m], child: selectedModel.child})
-  }
   const handleChildChange = (e) => {
     console.log(e.target.value);
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
 
-const saveDockerFile = () => {
-                  console.log(model.name+"name")
-                                    console.log(updatedChild.name+"child")
-                                    console.log(updatedChild.description+"desc")
+  const saveDockerFile = () => {
+    console.log(model.name + ": name")
+    console.log(updatedChild.name + ": child")
+    console.log(updatedChild.description + ": desc")
 
-                  const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name='+model.name+'&blob_name='+updatedChild.name+'.txt';
-                  const requestOptions = {
-                      method: 'POST',
-                      body: JSON.stringify(updatedChild.description)
-                  };
+    const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + model.name + '&blob_name=' + updatedChild.name + '.txt';
+    const requestOptions = {
+      method: 'POST',
+      body: JSON.stringify(updatedChild.description)
+    };
 
-                  fetch(url, requestOptions)
-                      .then(response =>{
-                      if(response.status==200){
-                        alert("Docker file saved successfully");
-                      }
-                      else
-                      {
-                        alert("Docker file not saved.Please check");
-                      }
-                      })
-                      .then(data => {
-                      });
-          };
+    fetch(url, requestOptions)
+      .then(response => {
+        if (response.status == 200) {
+          alert("Docker file saved successfully");
+        }
+        else {
+          alert("Docker file not saved.Please check");
+        }
+      })
+      .then(data => {
+        console.log(data)
+      });
+  };
 
   return (
     <Paper className={classes.paper}>
@@ -276,7 +270,7 @@ const saveDockerFile = () => {
               <TextField
                 required
                 id="outlined-required"
-                label="Editable"
+                label="Production Base Image Name"
                 name='name'
                 value={updatedChild.name}
                 variant="outlined"
@@ -289,7 +283,7 @@ const saveDockerFile = () => {
               <TextField
                 required
                 id="outlined-required_1"
-                label="Child Github URL"
+                label="Docker Registry URL"
                 name='url'
                 value={updatedChild.url}
                 variant="outlined"

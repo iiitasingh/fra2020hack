@@ -54,9 +54,9 @@ const useStyles = makeStyles(theme => ({
     button: {
         marginRight: theme.spacing(1),
     },
-    resize:{
+    resize: {
         minHeight: '500px',
-    },    
+    },
 
 }));
 
@@ -69,10 +69,10 @@ function Page2() {
         key: 0,
         child: '',
         childIndex: 0,
-        env:'',
-        desc:''
+        env: '',
+        desc: ''
     });
-    
+
 
     const handleModelChange = (event, key) => {
         setValues({
@@ -84,46 +84,42 @@ function Page2() {
     const handleChild = (event, key) => {
         setValues({
             ...values,
-            [event.target.name]: event.target.value, childIndex: key.key, env:modelData[values.key].child[key.key].Environment,
-            desc:modelData[values.key].child[key.key].description
+            [event.target.name]: event.target.value, childIndex: key.key, env: modelData[values.key].child[key.key].Environment,
+            desc: modelData[values.key].child[key.key].description
         });
     }
 
-    const handleChildDesc = (e,key) =>{
+    const handleChildDesc = (e, key) => {
         setValues({
             ...values,
             [e.target.name]: e.target.value
         });
     }
 
-    const publishGit = () =>{
-
-    }
-
-
     const saveDockerFile = () => {
-                  console.log(values.name+"name")
-                                    console.log(values.child+"child")
+        console.log(values.name + ": name")
+        console.log(values.child + ": child")
+        console.log(values.desc + ": desc")
 
-                  const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name='+values.name+'&blob_name='+values.child+'.txt';
-                  const requestOptions = {
-                      method: 'POST',
-                      body: JSON.stringify(values.desc)
-                  };
+        const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + values.name + '&blob_name=' + values.child + '.txt';
+        const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(values.desc)
+        };
 
-                  fetch(url, requestOptions)
-                      .then(response =>{
-                      if(response.status==200){
-                        alert("Docker file saved successfully");
-                      }
-                      else
-                      {
-                        alert("Docker file not saved.Please check");
-                      }
-                      })
-                      .then(data => {
-                      });
-          };
+        fetch(url, requestOptions)
+            .then(response => {
+                if (response.status == 200) {
+                    alert("Docker file saved successfully");
+                }
+                else {
+                    alert("Docker file not saved.Please check");
+                }
+            })
+            .then(data => {
+                console.log(data);
+            });
+    };
 
     return (
         <Paper className={classes1.paper}>
@@ -131,7 +127,7 @@ function Page2() {
                 <Grid container spacing={3} className={classes.grid}>
                     <Grid item xs={12} sm={6}>
                         <FormControl className={classes1.formControl} style={{ marginTop: 16 }}>
-                            <InputLabel htmlFor="age-simple">Select Risk Lab Base Image</InputLabel>
+                            <InputLabel htmlFor="age-simple">Select Risk Lab Model</InputLabel>
                             <Select
                                 value={values.name}
                                 onChange={handleModelChange}
@@ -168,8 +164,8 @@ function Page2() {
                         </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={6}>
-                        <FormControl className={classes1.formControl} style={{ marginLeft: '2%'}}>
-                        <TextField id="standard-basic" label="Model Docker Image Name" value={values.env} name="env" onChange={handleChildDesc}/>
+                        <FormControl className={classes1.formControl} style={{ marginLeft: '2%' }}>
+                            <TextField id="standard-basic" label="Model Docker Image Name" value={values.env} name="env" onChange={handleChildDesc} />
                         </FormControl>
                     </Grid>
                 </Grid>
