@@ -106,7 +106,6 @@ function Page2() {
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(values.desc),
-            body: JSON.stringify(updatedChild.description),
             mode: 'no-cors',
             headers: {
                 "Access-Control-Allow-Origin": '*',
