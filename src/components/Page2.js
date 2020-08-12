@@ -104,7 +104,13 @@ function Page2() {
         const url = 'https://bolbconnectivitydemo.azurewebsites.net/api/writeToBlob?container_name=' + values.name + '&blob_name=' + values.child + '.txt';
         const requestOptions = {
             method: 'POST',
-            body: JSON.stringify(values.desc)
+            body: JSON.stringify(values.desc),
+            body: JSON.stringify(updatedChild.description),
+            mode: 'cors',
+            headers: {
+                "Access-Control-Allow-Origin": '*',
+                "Content-Type": "text/xml",
+            }
         };
 
         fetch(url, requestOptions)
