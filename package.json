@@ -2,6 +2,10 @@
   "name": "hack2020",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Ashish Singh",
+    "email": "singh.ashish3104@gmail.com"
+  },
   "dependencies": {
     "@date-io/date-fns": "^1.3.7",
     "@material-ui/core": "^4.0.0-rc.0",

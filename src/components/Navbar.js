@@ -1,5 +1,5 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,7 +10,6 @@ import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -27,21 +26,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DailyScrum from './Daily_Scrum';
-import TaskAllocation from './Task_allocation';
+import Page2 from './Page2';
+import Page1 from './Page1';
 import NotFound from '../NotFound';
 import TaskIcon from '@material-ui/icons/EventNote';
 import ScrumIcon from '@material-ui/icons/People';
-import ReviewIcon from '@material-ui/icons/FindInPage';
-import RetroIcon from '@material-ui/icons/Forum';
 
 const drawerWidth = 220;
-
-const useStyles1 = makeStyles(theme => ({
-  root: {
-    width: '100%',
-  },
-}));
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -86,7 +77,7 @@ const useStyles = makeStyles(theme => ({
   },
   imageLogo: {
     marginRight: theme.spacing(2),
-    width : 140,
+    width: 140,
   },
   title: {
     display: 'none',
@@ -183,7 +174,6 @@ const useStyles = makeStyles(theme => ({
 
 function PrimarySearchAppBar(props) {
   const classes = useStyles();
-  const classes1 = useStyles1();
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [open, setOpen] = React.useState(false);
@@ -242,7 +232,7 @@ function PrimarySearchAppBar(props) {
       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
-      
+
     >
       <MenuItem>
         <IconButton aria-label="Show 4 new mails" color="inherit">
@@ -274,14 +264,14 @@ function PrimarySearchAppBar(props) {
     </Menu>
   );
 
-  const [pageName, setPage] = React.useState('Page 1');
+  const [pageName, setPage] = React.useState('Base Image Management and Certification Tool');
 
   const changePage = (e) => {
 
     if (e.currentTarget.dataset.id === '1') {
-      setPage('Page 1');
+      setPage('Base Image Management and Certification Tool');
     } else if (e.currentTarget.dataset.id === '2') {
-      setPage('Page 2');
+      setPage('Docker File Generation Tool');
     } else if (e.currentTarget.dataset.id === '3') {
       setPage('Support');
     } else {
@@ -303,12 +293,11 @@ function PrimarySearchAppBar(props) {
               edge="start"
               onClick={handleDrawerOpen}
               className={clsx(classes.menuButton, open && classes.hide)}
-              color="#343A40"
               aria-label="Open drawer"
             >
               <MenuIcon />
             </IconButton>
-            <img className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} />
+            <img alt="Logo" className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} />
             <Typography className={classes.title} variant="h6" noWrap>
               {pageName}
             </Typography>
@@ -340,7 +329,7 @@ function PrimarySearchAppBar(props) {
                 aria-controls={menuId}
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
-                
+
               >
                 <AccountCircle />
               </IconButton>
@@ -360,14 +349,14 @@ function PrimarySearchAppBar(props) {
         {renderMobileMenu}
         {renderMenu}
         <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
           <div className={classes.toolbar}>
             <IconButton onClick={handleDrawerClose}>
               {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
@@ -378,13 +367,13 @@ function PrimarySearchAppBar(props) {
             <Link to="/">
               <ListItem button onClick={changePage} data-id="1">
                 <ListItemIcon ><TaskIcon /></ListItemIcon>
-                <ListItemText >Page 1</ListItemText>
+                <ListItemText >Base Image Management and Certification Tool</ListItemText>
               </ListItem>
             </Link>
-            <Link to="/DailyScrum">
+            <Link to="/Page2">
               <ListItem button onClick={changePage} data-id="2">
                 <ListItemIcon ><ScrumIcon /></ListItemIcon>
-                <ListItemText >Page 2</ListItemText>
+                <ListItemText >Docker File Generation Tool</ListItemText>
               </ListItem>
             </Link>
           </List>
@@ -405,8 +394,9 @@ function PrimarySearchAppBar(props) {
           <div className={classes.drawerHeader} />
           <div>
             <Switch>
-              <Route exact path="/" component={TaskAllocation} />
-              <Route path="/DailyScrum" component={DailyScrum} />
+              <Route exact path="/" component={Page1} />
+              <Route path="/Page2" component={Page2} />
+              {/* <Route path="/Page3" component={Page3} /> */}
               <Route component={NotFound} />
             </Switch>
           </div>
