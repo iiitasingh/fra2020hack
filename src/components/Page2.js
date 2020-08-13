@@ -107,7 +107,7 @@ function Page2() {
             method: 'POST',
             body: JSON.stringify(values.desc),
             headers: {
-                "Access-Control-Allow-Origin": 'https://fras2020hack.herokuapp.com/',
+                "Access-Control-Allow-Origin": '*',
                 "Content-Type": "text/xml",
             }
         };
