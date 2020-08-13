@@ -32,4 +32,4 @@ ENV AZURE_TENANT_ID=<masked>
 ENV KEY_VAULT_NAME=<masked>
 
 #Setting up the workspace
-COPY src src 
+COPY src src

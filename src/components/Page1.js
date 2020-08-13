@@ -164,10 +164,6 @@ export default function CustomizedTables() {
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify(updatedChild.description),
-      headers: {
-        "Access-Control-Allow-Origin": '*',
-        "Content-Type": "text/xml",
-        }
     };
 
     fetch(url, requestOptions)

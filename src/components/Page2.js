@@ -106,10 +106,6 @@ function Page2() {
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(values.desc),
-            headers: {
-                "Access-Control-Allow-Origin": '*',
-                "Content-Type": "text/xml",
-            }
         };
 
         fetch(url, requestOptions)
