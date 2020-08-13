@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import modelDATA from './modelData.json';
+import modelDATA from './modelData2.json';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
@@ -164,16 +164,11 @@ export default function CustomizedTables() {
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify(updatedChild.description),
-      mode: 'cors',
-      headers: {
-        "Access-Control-Allow-Origin": '*',
-        "Content-Type": "text/xml",
-        }
     };
 
     fetch(url, requestOptions)
       .then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
           alert("Docker file saved successfully");
         }
         else {

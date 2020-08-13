@@ -13,7 +13,8 @@ import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
-import modelDATA from './modelData.json';
+import modelDATA from './modelData2.json';
+
 
 
 const useStyles1 = makeStyles(theme => ({
@@ -105,17 +106,11 @@ function Page2() {
         const requestOptions = {
             method: 'POST',
             body: JSON.stringify(values.desc),
-            body: JSON.stringify(updatedChild.description),
-            mode: 'cors',
-            headers: {
-                "Access-Control-Allow-Origin": '*',
-                "Content-Type": "text/xml",
-            }
         };
 
         fetch(url, requestOptions)
             .then(response => {
-                if (response.status == 200) {
+                if (response.status === 200) {
                     alert("Docker file saved successfully");
                 }
                 else {
