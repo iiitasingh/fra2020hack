@@ -7,10 +7,7 @@
             {
                 "id": 0,
                 "name": "dominos-java-dev-child-1",
-                "description": "#From Production base image\n
-                FROM pc-container-registry.ubs.net/ubs/risklab/dominodatalab/base:Ubuntu18_minimal_py37\n
-                #Installing requirements from requirements.txt\n
-                COPY requirements.txt",
+                "description": "#From Production base image\nFROM pc-container-registry.ubs.net/ubs/risklab/dominodatalab/base:Ubuntu18_minimal_py37\n\n#Installing requirements from requirements.txt\nCOPY requirements.txt /tmp\nRUN pip install -U pip \\\n    && pip install -r /tmp/requirements.txt && \\\n    rm -Rf /root/.cache\n# Additional Docker instructions from mock interface\nRUN mkdir -p /tmp && \\\n    wget -q --no-check-certificate -p /tmp/ https:// nexux-write.1dn.swissbank.com/nexux/content/repositories/deploy-ib-shared-003-release/com/ubs/fsp/edge-spark/2.4.5/edge-spark-2.4.5.tgz && \\\n    mkdir /opt/model && \\\n    tar -xzf /tmp/edge-spark-2.4.5.tgz -C /opt/model/ && \\\n    sed -i 's/\r//g' /opt/model/edge-spark-2.4.5-bin-hadoop3.2.1/bin/* && \\\n    wget -q --no-check-certificate -P /opt/model/ https:// nexux-write.1dn.swissbank.com/nexus/content/repositories/deploy-ib-shared-003-release/com/ubs/megdp/frp/edge_base_moniker/0.0.1/edge_base_moniker-0.0..1.jar && \\\n    rm -Rf /tmp && \\\n    conda install openjdk -y && \\\n    rm -R /opt/conda/pkgs -f\n#Setting up the environment\nENV SPARK_HOME /opt/model/edge-spark-2.4.5-bin-hadoop3.2.1\nENV JAVA-HOME=/opt/conda/jre\nENV PYTHONPATH=${SPARK_HOME}/python\nENV PYSPARK_PYTHON ${SPARK_HOME}\nENV PYSPARK_DRIVER_PYTHON ${SPARK_HOME}\nENV PYTHONPATH $SPARK_HOME/python/lib/py4j-0.10.7-src.zip:$PYTHONPATH\nENV HADOOP_HOME ${SPARK_HOME}\nENV PYSPARK_SUBMIT_ARGS='--master local --jars /opt/model/edge_base_moniker-*.jar pyspark-shell'\n#MEG connection variables\nENV AZURE_CLIENT_ID=<masked>\nENV AZURE_CLIENT_SECRET=<masked>\nENV AZURE_TENANT_ID=<masked>\nENV KEY_VAULT_NAME=<masked>\n\n#Setting up the workspace\nCOPY src src",
                 "Environment": "Dev",
                 "url": "www.github.com/java_dev/child1"
             },

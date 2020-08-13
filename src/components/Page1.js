@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import modelDATA from './modelData.json';
+import modelDATA from './modelData2.json';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import EditIcon from '@material-ui/icons/Edit';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import FormGroup from '@material-ui/core/FormGroup';
+
+
 
 
 const useStyles1 = makeStyles(theme => ({
@@ -56,22 +63,6 @@ const useStyles = makeStyles(theme => ({
   paper: {
     width: '100%',
   },
-  box1: {
-    paddingTop: 0,
-    paddingRight: 4,
-    paddingBottom: 0,
-    paddingLeft: 0,
-    height: 400,
-    overflow: 'auto'
-  },
-  box2: {
-    paddingTop: 0,
-    paddingRight: 0,
-    paddingBottom: 0,
-    paddingLeft: 4,
-    height: 400,
-    overflow: 'auto'
-  }
 }));
 
 export default function CustomizedTables() {
@@ -79,6 +70,9 @@ export default function CustomizedTables() {
   const classes1 = useStyles1();
 
   const [modelData, setModelData] = useState(modelDATA);
+  const [checkBox, setCheckBox] = React.useState({
+    checkedA: false
+  });
   const [model, setModel] = useState(
     {
       id: 0,
@@ -154,6 +148,10 @@ export default function CustomizedTables() {
     //console.log(e.target.value);
     setUpdatedChild({ ...updatedChild, [e.target.name]: e.target.value });
   }
+
+  const handleCheckChange = (event) => {
+    setCheckBox({ ...checkBox, [event.target.name]: event.target.checked });
+  };
 
   const saveDockerFile = () => {
     console.log(model.name + ": name")
@@ -332,7 +330,18 @@ export default function CustomizedTables() {
         <table className="table " style={{ marginBottom: 0 }}>
           <tbody>
             <tr className="thead-light">
-              <th style={{ textAlign: "center" }}><Button variant="contained" onClick={saveDockerFile}>Publish To Git</Button></th>
+              
+              <th style={{ textAlign: "center", paddingTop:0, paddingBottom:0 }}>
+                  <FormControlLabel
+                    label="MRMC Certified Docker Image"
+                    control={
+                      <Checkbox checked={checkBox.checkedA} onChange={handleCheckChange} name="checkedA" />
+                    }
+                    style={{marginTop:8, marginRight:40}}
+                  />
+                  <Button variant="contained" onClick={saveDockerFile}>Publish To Git</Button>
+                
+              </th>
             </tr>
           </tbody>
         </table>
