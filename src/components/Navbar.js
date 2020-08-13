@@ -297,7 +297,7 @@ function PrimarySearchAppBar(props) {
             >
               <MenuIcon />
             </IconButton>
-            <img alt="Logo" className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} />
+            {/* <img alt="Logo" className={classes.imageLogo} src={process.env.PUBLIC_URL + '/images/ubs-logo.png'} /> */}
             <Typography className={classes.title} variant="h6" noWrap>
               {pageName}
             </Typography>
